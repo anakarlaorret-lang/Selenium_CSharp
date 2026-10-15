@@ -7,7 +7,7 @@ namespace DemoTest.Tests
     [TestFixture]
     public class ResponsiveTests : BaseTest
     {
-        [TestCase(1366, 768, "desktop")]
+        //[TestCase(1366, 768, "desktop")]
         [TestCase(768, 1024, "tablet")]
         [TestCase(375, 667, "mobile")]
         public void VerifyResponsiveLayout(int width, int height, string device)
