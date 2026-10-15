@@ -6,6 +6,7 @@ C:\Users\anaka\qa repos\WhiteTower_SeleniumC#\DemoTest\bin\Debug\net10.0\nunit.e
 C:\Users\anaka\qa repos\WhiteTower_SeleniumC#\DemoTest\bin\Debug\net10.0\nunit.engine.core.dll
 C:\Users\anaka\qa repos\WhiteTower_SeleniumC#\DemoTest\bin\Debug\net10.0\testcentric.engine.metadata.dll
 C:\Users\anaka\qa repos\WhiteTower_SeleniumC#\DemoTest\bin\Debug\net10.0\NUnit3.TestAdapter.dll
+C:\Users\anaka\qa repos\WhiteTower_SeleniumC#\DemoTest\bin\Debug\net10.0\src\Data\TestData.json
 C:\Users\anaka\qa repos\WhiteTower_SeleniumC#\DemoTest\bin\Debug\net10.0\DemoTest.deps.json
 C:\Users\anaka\qa repos\WhiteTower_SeleniumC#\DemoTest\bin\Debug\net10.0\DemoTest.runtimeconfig.json
 C:\Users\anaka\qa repos\WhiteTower_SeleniumC#\DemoTest\bin\Debug\net10.0\DemoTest.dll
@@ -178,4 +179,3 @@ C:\Users\anaka\qa repos\WhiteTower_SeleniumC#\DemoTest\obj\Debug\net10.0\refint\
 C:\Users\anaka\qa repos\WhiteTower_SeleniumC#\DemoTest\obj\Debug\net10.0\DemoTest.pdb
 C:\Users\anaka\qa repos\WhiteTower_SeleniumC#\DemoTest\obj\Debug\net10.0\DemoTest.genruntimeconfig.cache
 C:\Users\anaka\qa repos\WhiteTower_SeleniumC#\DemoTest\obj\Debug\net10.0\ref\DemoTest.dll
-C:\Users\anaka\qa repos\WhiteTower_SeleniumC#\DemoTest\bin\Debug\net10.0\src\Data\TestData.json

@@ -25,28 +25,30 @@ namespace DemoTest.Tests
         }
 
         [TearDown]
-        public void Teardown()
+public void Teardown()
+{
+    if (TestContext.CurrentContext.Result.Outcome.Status == NUnit.Framework.Interfaces.TestStatus.Failed)
+    {
+        try
         {
-             // Captura evidencia si el test falla
-            if (TestContext.CurrentContext.Result.Outcome.Status == NUnit.Framework.Interfaces.TestStatus.Failed)
-            {
-                try
-                {
-                    var screenshot = ((ITakesScreenshot)driver).GetScreenshot();
-                    string filePath = Path.Combine("reports", $"{TestContext.CurrentContext.Test.Name}.png");
-                    screenshot.SaveAsFile(filePath);
-                }
-                catch
-                {
-                    // Avoid an issue/error on the screenshot blocks the teardown process.
-                }
-            }
+            var screenshot = ((ITakesScreenshot)driver).GetScreenshot();
 
-            if (driver != null)
-            {
-                driver.Quit();
-                driver.Dispose(); // Explicit dispose to satisfy NUnit analyzer
-            }
+            string reportsDir = Path.Combine(AppContext.BaseDirectory, "reports");
+            Directory.CreateDirectory(reportsDir); // Ensure folder exists
+
+            string filePath = Path.Combine(reportsDir, $"{TestContext.CurrentContext.Test.Name}.png");
+            screenshot.SaveAsFile(filePath);
+
+            TestContext.AddTestAttachment(filePath, "Screenshot on failure");
         }
+        catch
+        {
+            // Avoid blocking teardown if screenshot fails
+        }
+    }
+
+    driver?.Quit();
+    driver?.Dispose();
+}
     }
 }
