@@ -1,8 +1,6 @@
 ﻿using NUnit.Framework;
 using DemoTest.Pages;
 using DemoTest.Utils;
-using OpenQA.Selenium.Support.UI;
-using System;
 
 namespace DemoTest.Tests
 {

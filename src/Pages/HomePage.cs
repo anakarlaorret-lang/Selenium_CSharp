@@ -10,6 +10,8 @@ namespace DemoTest.Pages
         
         private readonly By mainBanner = By.XPath("//h1[text()='Engineering dreams']");
         private readonly By careersLink = By.CssSelector("a[href='/careers']");
+        private readonly By hamburgerMenu = By.CssSelector(".hamburger-menu");
+        private readonly By naviBar = By.CssSelector(".main-nav");
       
         #endregion
 
@@ -42,9 +44,44 @@ namespace DemoTest.Pages
                 return false;
             }
         }
-       public void ClickCareersLink()
+        public void ClickCareersLink()
         {
             driver.FindElement(careersLink).Click();
+        }
+        public bool IsHamburgerMenuVisible()
+        {
+            try
+            {
+                var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
+                var menu = wait.Until(d =>
+                {
+                    var element = d.FindElement(hamburgerMenu);
+                    return (element.Displayed) ? element : null;
+                });
+                return menu.Displayed;
+            }
+            catch (WebDriverTimeoutException)
+            {
+                return false;
+            }
+        }
+
+        public bool IsNavBarVisible()
+        {
+            try
+            {
+                var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
+                var navBar = wait.Until(d =>
+                {
+                    var element = d.FindElement(naviBar);
+                    return (element.Displayed) ? element : null;
+                });
+                return navBar.Displayed;
+            }
+            catch (WebDriverTimeoutException)
+            {
+                return false;
+            }
         }
     }
 }

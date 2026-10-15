@@ -1,7 +1,6 @@
 using NUnit.Framework;
 using OpenQA.Selenium;  
 using DemoTest.Utils;
-using OpenQA.Selenium.Chrome;
 
 namespace DemoTest.Tests
 {
@@ -28,6 +27,21 @@ namespace DemoTest.Tests
         [TearDown]
         public void Teardown()
         {
+             // Captura evidencia si el test falla
+            if (TestContext.CurrentContext.Result.Outcome.Status == NUnit.Framework.Interfaces.TestStatus.Failed)
+            {
+                try
+                {
+                    var screenshot = ((ITakesScreenshot)driver).GetScreenshot();
+                    string filePath = Path.Combine("reports", $"{TestContext.CurrentContext.Test.Name}.png");
+                    screenshot.SaveAsFile(filePath);
+                }
+                catch
+                {
+                    // Avoid an issue/error on the screenshot blocks the teardown process.
+                }
+            }
+
             if (driver != null)
             {
                 driver.Quit();
