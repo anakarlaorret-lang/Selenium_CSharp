@@ -1,6 +1,7 @@
 import http from 'k6/http';
 import { sleep } from 'k6';
 
+//Endurance test to simulate a sustained load on the White Tower careers page
 export let options = {
   vus: 50,            // 50 concurrent users
   duration: '2m',     // run for 2 minutes

@@ -1,5 +1,6 @@
 import http from 'k6/http';
 
+//Stress test to simulate a ramp-up load on the White Tower careers page
 export let options = {
   stages: [
     { duration: '30s', target: 10 },   // start with 10 users

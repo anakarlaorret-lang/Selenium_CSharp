@@ -1,6 +1,7 @@
 import http from 'k6/http';
 import { sleep } from 'k6';
 
+//Load test to simulate a base load on the White Tower careers page
 export let options = {
   vus: 20,            // 20 concurrent users
   duration: '30s',    // run for 30 seconds
