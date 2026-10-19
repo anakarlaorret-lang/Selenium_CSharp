@@ -1,11 +1,20 @@
 {
   "version": 2,
-  "dgSpecHash": "XDYI9H6OSfM=",
+  "dgSpecHash": "ySXs/PRaJgM=",
   "success": true,
   "projectFilePath": "C:\\Users\\anaka\\qa repos\\WhiteTower_SeleniumC#\\DemoTest\\DemoTest.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\anaka\\.nuget\\packages\\coverlet.collector\\6.0.4\\coverlet.collector.6.0.4.nupkg.sha512",
+    "C:\\Users\\anaka\\.nuget\\packages\\dnsclient\\1.2.0\\dnsclient.1.2.0.nupkg.sha512",
+    "C:\\Users\\anaka\\.nuget\\packages\\extentreports.core\\1.0.3\\extentreports.core.1.0.3.nupkg.sha512",
     "C:\\Users\\anaka\\.nuget\\packages\\microsoft.applicationinsights\\2.23.0\\microsoft.applicationinsights.2.23.0.nupkg.sha512",
+    "C:\\Users\\anaka\\.nuget\\packages\\microsoft.aspnetcore.html.abstractions\\2.2.0\\microsoft.aspnetcore.html.abstractions.2.2.0.nupkg.sha512",
+    "C:\\Users\\anaka\\.nuget\\packages\\microsoft.aspnetcore.razor\\2.2.0\\microsoft.aspnetcore.razor.2.2.0.nupkg.sha512",
+    "C:\\Users\\anaka\\.nuget\\packages\\microsoft.aspnetcore.razor.language\\2.2.0\\microsoft.aspnetcore.razor.language.2.2.0.nupkg.sha512",
+    "C:\\Users\\anaka\\.nuget\\packages\\microsoft.aspnetcore.razor.runtime\\2.2.0\\microsoft.aspnetcore.razor.runtime.2.2.0.nupkg.sha512",
+    "C:\\Users\\anaka\\.nuget\\packages\\microsoft.codeanalysis.analyzers\\1.1.0\\microsoft.codeanalysis.analyzers.1.1.0.nupkg.sha512",
+    "C:\\Users\\anaka\\.nuget\\packages\\microsoft.codeanalysis.common\\2.8.0\\microsoft.codeanalysis.common.2.8.0.nupkg.sha512",
+    "C:\\Users\\anaka\\.nuget\\packages\\microsoft.codeanalysis.csharp\\2.8.0\\microsoft.codeanalysis.csharp.2.8.0.nupkg.sha512",
     "C:\\Users\\anaka\\.nuget\\packages\\microsoft.codecoverage\\18.11.0\\microsoft.codecoverage.18.11.0.nupkg.sha512",
     "C:\\Users\\anaka\\.nuget\\packages\\microsoft.extensions.dependencymodel\\8.0.2\\microsoft.extensions.dependencymodel.8.0.2.nupkg.sha512",
     "C:\\Users\\anaka\\.nuget\\packages\\microsoft.net.test.sdk\\18.11.0\\microsoft.net.test.sdk.18.11.0.nupkg.sha512",
@@ -18,14 +27,34 @@
     "C:\\Users\\anaka\\.nuget\\packages\\microsoft.testplatform.adapterutilities\\18.10.1\\microsoft.testplatform.adapterutilities.18.10.1.nupkg.sha512",
     "C:\\Users\\anaka\\.nuget\\packages\\microsoft.testplatform.objectmodel\\18.11.0\\microsoft.testplatform.objectmodel.18.11.0.nupkg.sha512",
     "C:\\Users\\anaka\\.nuget\\packages\\microsoft.testplatform.testhost\\18.11.0\\microsoft.testplatform.testhost.18.11.0.nupkg.sha512",
+    "C:\\Users\\anaka\\.nuget\\packages\\mongodb.bson\\2.8.0\\mongodb.bson.2.8.0.nupkg.sha512",
+    "C:\\Users\\anaka\\.nuget\\packages\\mongodb.driver\\2.8.0\\mongodb.driver.2.8.0.nupkg.sha512",
+    "C:\\Users\\anaka\\.nuget\\packages\\mongodb.driver.core\\2.8.0\\mongodb.driver.core.2.8.0.nupkg.sha512",
     "C:\\Users\\anaka\\.nuget\\packages\\netstandard.library\\2.0.0\\netstandard.library.2.0.0.nupkg.sha512",
     "C:\\Users\\anaka\\.nuget\\packages\\newtonsoft.json\\13.0.3\\newtonsoft.json.13.0.3.nupkg.sha512",
     "C:\\Users\\anaka\\.nuget\\packages\\nunit\\3.13.3\\nunit.3.13.3.nupkg.sha512",
     "C:\\Users\\anaka\\.nuget\\packages\\nunit.analyzers\\4.7.0\\nunit.analyzers.4.7.0.nupkg.sha512",
     "C:\\Users\\anaka\\.nuget\\packages\\nunit3testadapter\\6.3.1\\nunit3testadapter.6.3.1.nupkg.sha512",
+    "C:\\Users\\anaka\\.nuget\\packages\\razorengine.netcore\\2.2.6\\razorengine.netcore.2.2.6.nupkg.sha512",
     "C:\\Users\\anaka\\.nuget\\packages\\selenium.support\\4.51.0\\selenium.support.4.51.0.nupkg.sha512",
     "C:\\Users\\anaka\\.nuget\\packages\\selenium.webdriver\\4.51.0\\selenium.webdriver.4.51.0.nupkg.sha512",
-    "C:\\Users\\anaka\\.nuget\\packages\\selenium.webdriver.chromedriver\\155.0.8059.3900\\selenium.webdriver.chromedriver.155.0.8059.3900.nupkg.sha512"
+    "C:\\Users\\anaka\\.nuget\\packages\\selenium.webdriver.chromedriver\\155.0.8059.3900\\selenium.webdriver.chromedriver.155.0.8059.3900.nupkg.sha512",
+    "C:\\Users\\anaka\\.nuget\\packages\\system.configuration.configurationmanager\\4.5.0\\system.configuration.configurationmanager.4.5.0.nupkg.sha512",
+    "C:\\Users\\anaka\\.nuget\\packages\\system.security.cryptography.protecteddata\\4.5.0\\system.security.cryptography.protecteddata.4.5.0.nupkg.sha512",
+    "C:\\Users\\anaka\\.nuget\\packages\\system.security.permissions\\4.5.0\\system.security.permissions.4.5.0.nupkg.sha512"
   ],
-  "logs": []
+  "logs": [
+    {
+      "code": "NU1903",
+      "level": "Warning",
+      "message": "Package 'MongoDB.Driver' 2.8.0 has a known high severity vulnerability, https://github.com/advisories/GHSA-7j9m-j397-g4wx",
+      "projectPath": "C:\\Users\\anaka\\qa repos\\WhiteTower_SeleniumC#\\DemoTest\\DemoTest.csproj",
+      "warningLevel": 1,
+      "filePath": "C:\\Users\\anaka\\qa repos\\WhiteTower_SeleniumC#\\DemoTest\\DemoTest.csproj",
+      "libraryId": "MongoDB.Driver",
+      "targetGraphs": [
+        "net10.0"
+      ]
+    }
+  ]
 }
