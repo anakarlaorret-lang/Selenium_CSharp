@@ -1,14 +1,16 @@
 {
-  "urls": {
-    "baseUrl": "https://towersoft.net",
-    "careersUrl": "https://towersoft.net/careers"
+  "BaseUrl": "https://demoqa.com/",
+  "validForm": {
+    "firstName": "Ana",
+    "lastName": "QA",
+    "email": "ana.qa@example.com",
+    "phone": "1234567890"
   },
-  "expectedTexts": {
-    "homeTitle": "White Tower Software LLC",
-    "jobSectionTitle": "Open Positions"
-  },
-  "timeouts": {
-    "implicitWait": 5,
-    "explicitWait": 10
+  "invalidForm": {
+    "firstName": "",
+    "lastName": "",
+    "email": "invalid-email",
+    "phone": "abc"
   }
 }
+

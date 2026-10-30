@@ -13,20 +13,15 @@ namespace DemoTest.Utils
     {
         public static IWebDriver CreateDriver(string browser = "chrome")
         {
-            return browser.ToLower() switch
+            return browser.Trim().ToLowerInvariant() switch
             {
-                "chrome" => CreateChromeDriver(),
+                "chrome" => new ChromeDriver(),
                 "firefox" => new FirefoxDriver(),
                 "edge" => new EdgeDriver(),
-                _ => CreateChromeDriver()
+                _ => throw new ArgumentException(
+                    $"Unsupported browser '{browser}'. Supported browsers: chrome, firefox, edge.",
+                    nameof(browser))
             };
-        }
-
-        private static IWebDriver CreateChromeDriver()
-        {
-            var options = new ChromeOptions();
-            options.AddArgument("--start-maximized"); 
-            return new ChromeDriver(options);
         }
     }
 }

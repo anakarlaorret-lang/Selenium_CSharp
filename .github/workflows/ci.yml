@@ -1,4 +1,4 @@
-name: Selenium Tests CI
+name: Selenium UI Tests CI
 
 on:
   push:
@@ -9,15 +9,19 @@ on:
 jobs:
   build-and-test:
     runs-on: windows-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        browser: [chrome, firefox, edge]
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Setup .NET
-        uses: actions/setup-dotnet@v3
+        uses: actions/setup-dotnet@v4
         with:
-          dotnet-version: '6.0.x'
+          dotnet-version: '8.0.x'
 
       - name: Restore dependencies
         run: dotnet restore
@@ -25,5 +29,15 @@ jobs:
       - name: Build
         run: dotnet build --no-restore --configuration Release
 
-      - name: Run tests
-        run: dotnet test --no-build --configuration Release --logger "trx;LogFileName=test_results.trx"
+      - name: Run SpecFlow tests
+        run: dotnet test --no-build --configuration Release --logger "trx;LogFileName=${{ matrix.browser }}.trx"
+        env:
+          BROWSER: ${{ matrix.browser }}
+
+      - name: Upload test results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: test-results-${{ matrix.browser }}
+          path: '**/TestResults/*.trx'  
+          if-no-files-found: warn

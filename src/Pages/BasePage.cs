@@ -1,94 +1,51 @@
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
 using System;
+using SeleniumExtras.WaitHelpers;
+using DemoTest.Utils;
 
 namespace DemoTest.Pages
 {
-    /// <summary>
-    /// BasePage provides common methods and utilities
-    /// for all page objects in the project.
-    /// Every page class should inherit from this class.
-    /// </summary>
     public abstract class BasePage
     {
-        protected IWebDriver driver;
-        protected WebDriverWait wait;
+        public readonly IWebDriver Driver;
 
-        /// <summary>
-        /// Constructor initializes WebDriver and WebDriverWait.
-        /// </summary>
-        /// <param name="driver">The WebDriver instance</param>
-        public BasePage(IWebDriver driver)
+        protected BasePage(IWebDriver driver)
         {
-            this.driver = driver;
-            wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
+            Driver = driver;
         }
 
-        /// <summary>
-        /// Navigate to a specific URL.
-        /// </summary>
-        /// <param name="url">Target URL</param>
-        public void NavigateTo(string url)
+        protected IWebElement WaitForElement(By locator, int timeoutSeconds = 10)
         {
-            driver.Navigate().GoToUrl(url);
+            WebDriverWait wait = new WebDriverWait(Driver, TimeSpan.FromSeconds(timeoutSeconds));
+            var element = wait.Until(ExpectedConditions.ElementIsVisible(locator));
+            ((IJavaScriptExecutor)Driver).ExecuteScript("arguments[0].scrollIntoView(true);", element);
+            return element;
         }
 
-        /// <summary>
-        /// Find an element using explicit wait.
-        /// </summary>
-        /// <param name="locator">Locator strategy</param>
-        /// <returns>IWebElement</returns>
-        protected IWebElement FindElement(By locator)
+        protected void ScrollIntoView(IWebElement element)
         {
-            return wait.Until(drv => drv.FindElement(locator));
+            ((IJavaScriptExecutor)Driver).ExecuteScript("arguments[0].scrollIntoView(true);", element);
         }
 
-        /// <summary>
-        /// Click on an element.
-        /// </summary>
-        /// <param name="locator">Locator strategy</param>
-        protected void Click(By locator)
+        protected void SafeClick(IWebElement element)
         {
-            FindElement(locator).Click();
+            ScrollIntoView(element);
+            ((IJavaScriptExecutor)Driver).ExecuteScript("arguments[0].click();", element);
         }
 
-        /// <summary>
-        /// Enter text into an input field.
-        /// </summary>
-        /// <param name="locator">Locator strategy</param>
-        /// <param name="text">Text to input</param>
-        protected void EnterText(By locator, string text)
+        public void NavigateToCard(By cardSelector, By elementToWait, int timeoutSeconds = 10)
         {
-            var element = FindElement(locator);
-            element.Clear();
-            element.SendKeys(text);
-        }
+            // Abre la página inicial
+            Driver.Navigate().GoToUrl(ConfigReader.GetBaseUrl());
+            Driver.Manage().Window.Maximize();
 
-        /// <summary>
-        /// Get the text of an element.
-        /// </summary>
-        /// <param name="locator">Locator strategy</param>
-        /// <returns>Element text</returns>
-        protected string GetText(By locator)
-        {
-            return FindElement(locator).Text;
-        }
+            // Hace clic en el card específico
+            var card = WaitForElement(cardSelector, timeoutSeconds);
+            card.Click();
 
-        /// <summary>
-        /// Check if an element is visible.
-        /// </summary>
-        /// <param name="locator">Locator strategy</param>
-        /// <returns>True if visible, false otherwise</returns>
-        protected bool IsElementVisible(By locator)
-        {
-            try
-            {
-                return FindElement(locator).Displayed;
-            }
-            catch
-            {
-                return false;
-            }
+            // Espera a que el elemento clave de la siguiente página esté visible
+            WaitForElement(elementToWait, timeoutSeconds);
         }
     }
 }
