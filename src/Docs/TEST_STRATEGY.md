@@ -75,7 +75,7 @@ The goal is to ensure critical user journeys are validated and integrate the UI 
 * Unavailable or Dummy Data: Use simulated inputs and placeholder values for forms to ensure test continuity.
 * Incomplete Features: Keep scenarios for unavailable behavior out of the active regression suite until they can be reliably verified.
 * Execution time in CI/CD: Use the configured browser matrix to distribute browser coverage.
-* Flaky Tests Due to Dynamic Elements: Prefer explicit waits and observable conditions.
+* Flaky Tests Due to Dynamic Elements: Prefer explicit waits and observable conditions. Hide DemoQA's known third-party ad slots before Web Tables actions; keep the actual interactions as native Selenium clicks.
 
 9. Roles and Responsibilities
 * QA Engineer: Design the test strategy, implement Page Objects, and write automated test cases.

@@ -161,6 +161,7 @@ namespace DemoTest.Pages
 
         public void EditRecord(string currentFirstName, string updatedFirstName)
         {
+            SuppressDemoQaAdvertisements();
             var row = FindTableRow(currentFirstName);
             var editButton = row.FindElement(By.CssSelector("[title='Edit']"));
             ScrollToStableElement(editButton, "end", "center");
@@ -173,6 +174,7 @@ namespace DemoTest.Pages
 
         public void DeleteRecord(string firstName)
         {
+            SuppressDemoQaAdvertisements();
             var deleteButton = FindTableRow(firstName).FindElement(By.CssSelector("[title='Delete']"));
             ScrollToStableElement(deleteButton, "end", "center");
             deleteButton.Click();

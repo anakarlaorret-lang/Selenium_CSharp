@@ -50,6 +50,31 @@ namespace DemoTest.Pages
                 inlineAlignment);
         }
 
+        protected void SuppressDemoQaAdvertisements()
+        {
+            ((IJavaScriptExecutor)Driver).ExecuteScript(
+                "const adSelector = '#RightSide_Advertisement, #fixedban, #adplus-anchor, .Google-Ad, " +
+                "iframe[title=\"3rd party ad content\"], iframe[id^=\"google_ads_iframe_\"]'; " +
+                "const hideAdvertisements = () => { " +
+                "document.querySelectorAll(adSelector).forEach(ad => { " +
+                "const container = ad.closest('.col-12.mt-4.col-md-3.col-xl-3') || ad.closest('#fixedban') || ad; " +
+                "container.setAttribute('data-test-ad-hidden', 'true'); " +
+                "}); " +
+                "}; " +
+                "if (!document.getElementById('test-ad-suppression-style')) { " +
+                "const style = document.createElement('style'); " +
+                "style.id = 'test-ad-suppression-style'; " +
+                "style.textContent = '[data-test-ad-hidden=\"true\"], ' + adSelector + " +
+                "' { display: none !important; pointer-events: none !important; }'; " +
+                "document.head.appendChild(style); " +
+                "} " +
+                "hideAdvertisements(); " +
+                "if (!window.__testAdObserver) { " +
+                "window.__testAdObserver = new MutationObserver(hideAdvertisements); " +
+                "window.__testAdObserver.observe(document.documentElement, { childList: true, subtree: true }); " +
+                "}");
+        }
+
         public void NavigateToCard(By cardSelector, By elementToWait, int timeoutSeconds = 10)
         {
             // Abre la página inicial
