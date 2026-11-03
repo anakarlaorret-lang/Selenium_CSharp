@@ -1,13 +1,13 @@
 ---
 name: Bug report
-about: Report a reproducible problem with the UI automation project
+about: Report a reproducible problem in this repository's framework or tests
 title: "[BUG] "
 labels: bug
 assignees: ""
 ---
 
 ## Issue overview
-Describe the problem briefly.
+Describe the problem briefly. Report issues in this repository's test framework or automation, not unconfirmed defects in the external DemoQA site.
 
 ## Environment
 - Operating system:
@@ -19,6 +19,8 @@ Describe the problem briefly.
 2.
 3.
 
+Include the scenario name and the exact command used to run it.
+
 ## Expected behavior
 Describe what you expected to happen.
 
@@ -26,4 +28,4 @@ Describe what you expected to happen.
 Describe what happened instead.
 
 ## Logs or screenshots
-Attach relevant test output, report excerpts, or screenshots.
+Attach relevant test output, a redacted report excerpt, or a screenshot. Remove credentials, personal information, and local machine paths before posting.

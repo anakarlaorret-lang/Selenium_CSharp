@@ -21,6 +21,7 @@ The goal is to ensure critical user journeys are validated and integrate the UI 
     - Data-driven form scenarios using the JSON test-data file.
     - CI/CD integration: GitHub Actions.
     - ExtentReports HTML output for local test runs.
+    - Bug reports for reproducible issues in this repository's framework and tests.
         
 * Out of Scope:
     - Full Security Testing: Selenium is not a penetration testing tool. True security validation should be performed with dedicated solutions like OWASP ZAP or Burp Suite.
@@ -39,7 +40,7 @@ The goal is to ensure critical user journeys are validated and integrate the UI 
 4. Type of Testing
 * Smoke Testing: Verify site loads and essential elements are visible.
 * Functional Testing: Validate navigation, form submission, table interactions, and alert handling.
-* Validation Testing: Ensure proper error handling and input validation across forms and widets.
+* Validation Testing: Ensure proper error handling and input validation across forms and widgets.
 * Regression Testing: Re-run critical flows after framework updates to confirm stability.
 * Cross-Browser Testing: Confirm compatibility across supported browsers.
 
@@ -54,19 +55,19 @@ The goal is to ensure critical user journeys are validated and integrate the UI 
 6. Test Environment
 * Local: Windows 10, .NET SDK.
 * CI/CD: GitHub Actions with browser matrix.
-* Data: Dummy credentials and simulated form inputs.
+* Data: Synthetic form inputs from the JSON test-data file.
 
 7. Entry and Exit Criteria
 * Entry Criteria:
     - Site accessible and stable.
     - Test environment fully configured.
-    - Page Objectsand base framework components are implemented.
-    - Test Data is available.
+    - Page Objects and base framework components are implemented.
+    - Synthetic test data is available.
 
-* Exit Criteria: 
-    - All planned critical test cases have been executed executed.
-    - No critical or high-severity defects remain unresolved.
-    - HTML test report has been generated and reviewed.
+* Exit Criteria:
+    - All planned critical test cases have been executed.
+    - No critical or high-severity framework/test defects remain unresolved.
+    - The local ExtentReports HTML report or CI TRX results have been generated and reviewed.
     - Test summary report delivered to stakeholders.
 
 8. Risk and Mitigation
@@ -76,10 +77,10 @@ The goal is to ensure critical user journeys are validated and integrate the UI 
 * Execution time in CI/CD: Use the configured browser matrix to distribute browser coverage.
 * Flaky Tests Due to Dynamic Elements: Prefer explicit waits and observable conditions.
 
-9. Roles and Resposibilities
-* QA Engineer: Design test strategy, implement Page Objects, write automated tests cases.
-* Development Team: Provide stability of the application under test and assist with test data requirements.
-* CI/CD Owner: Configure pipelines, environments, and browser matrix execution..
+9. Roles and Responsibilities
+* QA Engineer: Design the test strategy, implement Page Objects, and write automated test cases.
+* DemoQA is an external practice site; its implementation and availability are outside this project's control.
+* CI/CD Owner: Configure pipelines, environments, and browser matrix execution.
 
 10. Metrics
 * Percentage of critical flows automated.
@@ -95,4 +96,4 @@ The goal is to ensure critical user journeys are validated and integrate the UI 
 * ExtentReports HTML report: generated for local test runs, with optional automatic opening.
 * CI/CD pipeline configuration: GitHub Actions workflows.
 * features/: Gherkin '.feature' files describing scenarios.
-* step_definitions/: C# classes implementing step definitions for Cucumber
+* Step definitions: C# bindings for SpecFlow.

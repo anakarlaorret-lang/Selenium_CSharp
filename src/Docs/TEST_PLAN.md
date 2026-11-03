@@ -37,7 +37,7 @@ Local: Windows 10, .NET 8 SDK, Visual Studio/VS Code.
 
 CI/CD: GitHub Actions pipeline with a Chrome, Firefox, and Edge browser matrix.
 
-Data: Dummy credentials and simulated form inputs.
+Data: Synthetic form inputs from the JSON test-data file.
 
 Reporting: ExtentReports HTML report for local runs; TRX test results in CI.
 
@@ -46,7 +46,7 @@ Reporting: ExtentReports HTML report for local runs; TRX test results in CI.
 * DemoQA site is accessible and stable.
 * .NET 8 SDK installed.
 * Selenium WebDriver dependencies restored; Selenium Manager resolves the browser driver.
-* Test data prepared in `src/Data/testData.json`.
+* Synthetic test data is available in `src/Data/testData.json`.
 * GitHub Actions runner configured with required dependencies.
 * Reporting initialized by the test hooks.
 
@@ -60,4 +60,4 @@ Reporting: ExtentReports HTML report for local runs; TRX test results in CI.
     - Functional + validation tests -> daily execution.
 
 * CI/CD Execution (GitHub Actions):
-    - Full UI suite and Chrome/Firefox/Edge matrix -> on pushes and pull requests targeting `main`
+    - Full UI suite and Chrome/Firefox/Edge matrix -> on pushes to `main`

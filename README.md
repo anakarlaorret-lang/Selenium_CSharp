@@ -1,42 +1,35 @@
-# Selenium_CSharp
-DemoQA UI Automation Project (https://demoqa.com/)
+# Selenium C# UI Automation
 
-1. Overview
+[![Selenium UI Tests CI](https://github.com/anakarlaorret-lang/Selenium_CSharp/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/anakarlaorret-lang/Selenium_CSharp/actions/workflows/ci.yml)
 
-This project demonstrates UI automation with Selenium + C# using the DemoQA site as a playground.
-It showcases framework design, CI/CD integration, and professional QA practices for portfolio purposes.
+A portfolio project demonstrating browser-based functional testing with Selenium WebDriver, C#, .NET 8, NUnit, and SpecFlow against the public [DemoQA practice site](https://demoqa.com/).
 
-2. Features
+## What this project demonstrates
 
-* Functional Testing: Selenium automation for core flows (forms, elements, alert, widgets).
-* Code Quality: .gitignore and .editorconfig management, clean architecture with Page Object Model.
-* CI/CD: GitHub Actions runs the Selenium UI suite on .NET 8 with Chrome, Firefox, and Edge.
-* Reporting: ExtentReports for HTML reports.
-* Documentation: Clear README and structures repo for recruiters and collaborators.
-* BDD with Gherkin: Test cases described in natural language (Given/When/Then).
-* SpecFlow BDD: `.feature` scenarios are bound to C# step definitions.
+- Page Object Model and reusable Selenium interactions.
+- BDD scenarios written in Gherkin and bound to C# step definitions.
+- Scenario-scoped WebDriver instances with Chrome, Firefox, and Edge support.
+- Explicit assertions, waits, and test data for selected UI flows.
+- GitHub Actions browser matrix and ExtentReports HTML output for local runs.
 
-3. Setup & Installation
+The suite covers selected Elements, Forms, Alerts, and Widgets flows. See the [test plan](src/Docs/TEST_PLAN.md) and [test strategy](src/Docs/TEST_STRATEGY.md) for details.
 
-* Prerequisites
-    - .NET 8 SDK
-    - Git
-    - Visual studio/VS Code
+## Prerequisites
 
-* Installation
+- .NET 8 SDK
+- Git
+- Chrome, Firefox, or Edge
+
+## Run locally
+
 ```powershell
-git clone https://github.com/ana-karla-orret/Selenium_CSharp.git
+git clone https://github.com/anakarlaorret-lang/Selenium_CSharp.git
 cd Selenium_CSharp
 dotnet restore
-```
-
-4. Running Tests
-```powershell
-dotnet build --configuration Release
 dotnet test --configuration Release
 ```
 
-By default, UI tests use Chrome. To select a supported browser locally:
+Chrome is the default browser. To select another supported browser:
 
 ```powershell
 $env:BROWSER = "firefox" # chrome, firefox, or edge
@@ -44,11 +37,11 @@ dotnet test --configuration Release
 Remove-Item Env:BROWSER
 ```
 
-The WebDriver is created per scenario. Selenium Manager resolves the matching browser driver.
-The GitHub Actions workflow runs the UI suite once per browser and uploads a separate TRX result artifact for each run.
-ExtentReports generates `report.html` in the test output directory, for example `bin/Release/net8.0/report.html`.
+The test hooks create and close a WebDriver for each scenario. Selenium Manager resolves the browser driver.
 
-To open the HTML report automatically after a local test run, set `OPEN_EXTENT_REPORT` to `true`:
+## ExtentReports
+
+ExtentReports writes `report.html` to the test output directory, for example `bin/Release/net8.0/report.html`. To open it automatically after a local run:
 
 ```powershell
 $env:OPEN_EXTENT_REPORT = "true"
@@ -56,43 +49,31 @@ dotnet test --configuration Release
 Remove-Item Env:OPEN_EXTENT_REPORT
 ```
 
-Automatic opening is opt-in and disabled in CI. The report is still generated when the option is unset.
+Automatic opening is opt-in and disabled in CI. The HTML report is still generated when the variable is unset. CI uploads TRX test results as workflow artifacts.
 
-### ExtentReports preview
+There is no committed report screenshot yet. Before adding one, remove local paths, personal data, and other environment-specific details; save the sanitized image as `docs/images/extent-report.png` and embed it here.
 
-Save a screenshot of the report as `docs/images/extent-report.png` to display it here:
+## Scope and limitations
 
-![ExtentReports execution report](docs/images/extent-report.png)
+- This repository demonstrates UI functional automation; it is not a load/performance or security testing suite.
+- DemoQA is an external practice site, not an application maintained by this project. Its content, advertisements, availability, and layout can change and affect test stability.
+- A failing browser test is not, by itself, evidence of a defect in DemoQA. Confirm the behavior independently before reporting an application issue.
+- Test data is synthetic. Do not add credentials, private data, local machine paths, or unredacted reports/screenshots.
 
-See the [hypothetical bug report example](src/Docs/BUG_REPORT_EXAMPLE.md) for a sample report based on a deliberately incorrect test expectation.
+## Issues and contributions
 
-5. Test Types
-* Smoke testing: Verify site loads and essential elements are visible.
-* Functional testing: Validate navigation, form submission, table interactions, and alert handling.
-* Validation testing: Ensure proper error handling and input validation.
-* Regression testing: Re-run critical flows after updates.
-* Cross-Browser testing: Confirm compatibility across Chrome, Firefox, and Edge.
+Use the [bug report template](.github/ISSUE_TEMPLATE/bug_report.md) only for reproducible problems in this repository's framework or tests. See the [hypothetical report example](src/Docs/BUG_REPORT_EXAMPLE.md); do not use the template to report unconfirmed DemoQA defects.
 
-6. CI/CD Integration
-* GitHub Actions pipeline runs functional tests on each push.
-* Browser matrix executes the Selenium UI suite on Chrome, Firefox, and Edge.
-* Badges for builds status and coverage included.
+This is a personal portfolio repository. External pull requests are not accepted; opening an issue does not grant permission to modify or reuse the project.
 
-7. Highlights
-* Demonstrates QA best practices end-to-end.
-* Combines UI automation and CI/CD.
-* Clear documentation for recruiters and collaborators.
+## Professional portfolio
 
-## Professional Portfolio
-
-This project was created as part of my professional portfolio to demonstrate UI test automation with Selenium WebDriver, C#, and .NET.
+Created as part of my professional portfolio to demonstrate Selenium WebDriver and C# UI automation.
 
 **Ana K. Orret**  
 Senior Software QA Engineer | Manual & Automation | Test plan & Strategy  
-[GitHub profile](https://github.com/ana-karla-orret)
+[View this project on GitHub](https://github.com/anakarlaorret-lang/Selenium_CSharp)
 
-This project is not intended for commercial use without prior authorization from the author. DemoQA and third-party dependencies remain subject to their respective terms and licenses.
+## Copyright and usage
 
-8. License
-
-No license for commercial use is granted by this repository. Please contact the author for authorization.
+Copyright (c) 2026 Ana K. Orret. This repository is shared for portfolio review; no commercial license is granted. Obtain prior written authorization before commercial use. This README is not a substitute for a formal license. Third-party components, DemoQA content, and trademarks remain subject to their respective licenses and terms.
