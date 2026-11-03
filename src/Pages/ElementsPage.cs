@@ -163,7 +163,7 @@ namespace DemoTest.Pages
         {
             var row = FindTableRow(currentFirstName);
             var editButton = row.FindElement(By.CssSelector("[title='Edit']"));
-            ScrollToStableElement(editButton);
+            ScrollToStableElement(editButton, "end", "center");
             editButton.Click();
             var firstNameField = WaitForElement(By.Id("firstName"));
             firstNameField.Clear();
@@ -174,7 +174,7 @@ namespace DemoTest.Pages
         public void DeleteRecord(string firstName)
         {
             var deleteButton = FindTableRow(firstName).FindElement(By.CssSelector("[title='Delete']"));
-            ScrollToStableElement(deleteButton);
+            ScrollToStableElement(deleteButton, "end", "center");
             deleteButton.Click();
         }
 

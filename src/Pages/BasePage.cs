@@ -19,16 +19,21 @@ namespace DemoTest.Pages
         {
             WebDriverWait wait = new WebDriverWait(Driver, TimeSpan.FromSeconds(timeoutSeconds));
             var element = wait.Until(ExpectedConditions.ElementIsVisible(locator));
-            ((IJavaScriptExecutor)Driver).ExecuteScript("arguments[0].scrollIntoView(true);", element);
+            ((IJavaScriptExecutor)Driver).ExecuteScript(
+                "arguments[0].scrollIntoView({ block: 'center', inline: 'nearest' });",
+                element);
             return element;
         }
 
-        protected void ScrollToStableElement(IWebElement element)
+        protected void ScrollToStableElement(
+            IWebElement element,
+            string blockAlignment = "center",
+            string inlineAlignment = "nearest")
         {
             ((IJavaScriptExecutor)Driver).ExecuteAsyncScript(
                 "const element = arguments[0]; " +
                 "const done = arguments[arguments.length - 1]; " +
-                "element.scrollIntoView({ block: 'center', inline: 'nearest' }); " +
+                "element.scrollIntoView({ block: arguments[1], inline: arguments[2] }); " +
                 "let previousPosition; " +
                 "let stableFrames = 0; " +
                 "const waitForStablePosition = () => { " +
@@ -40,7 +45,9 @@ namespace DemoTest.Pages
                 "else requestAnimationFrame(waitForStablePosition); " +
                 "}; " +
                 "requestAnimationFrame(waitForStablePosition);",
-                element);
+                element,
+                blockAlignment,
+                inlineAlignment);
         }
 
         public void NavigateToCard(By cardSelector, By elementToWait, int timeoutSeconds = 10)
