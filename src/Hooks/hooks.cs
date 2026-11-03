@@ -37,7 +37,7 @@ namespace DemoTest.Hooks
 
             try
             {
-                scenarioDriver.Manage().Window.Maximize();
+                scenarioDriver.Manage().Window.Size = new System.Drawing.Size(1920, 1080);
                 scenarioDriver.Navigate().GoToUrl(ConfigReader.GetBaseUrl());
                 scenarioContext.ScenarioContainer.RegisterInstanceAs<IWebDriver>(scenarioDriver);
             }

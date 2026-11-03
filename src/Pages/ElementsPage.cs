@@ -162,7 +162,9 @@ namespace DemoTest.Pages
         public void EditRecord(string currentFirstName, string updatedFirstName)
         {
             var row = FindTableRow(currentFirstName);
-            row.FindElement(By.CssSelector("[title='Edit']")).Click();
+            var editButton = row.FindElement(By.CssSelector("[title='Edit']"));
+            ScrollToStableElement(editButton);
+            editButton.Click();
             var firstNameField = WaitForElement(By.Id("firstName"));
             firstNameField.Clear();
             firstNameField.SendKeys(updatedFirstName);
@@ -171,7 +173,9 @@ namespace DemoTest.Pages
 
         public void DeleteRecord(string firstName)
         {
-            FindTableRow(firstName).FindElement(By.CssSelector("[title='Delete']")).Click();
+            var deleteButton = FindTableRow(firstName).FindElement(By.CssSelector("[title='Delete']"));
+            ScrollToStableElement(deleteButton);
+            deleteButton.Click();
         }
 
         public bool TableContains(string value)

@@ -23,6 +23,26 @@ namespace DemoTest.Pages
             return element;
         }
 
+        protected void ScrollToStableElement(IWebElement element)
+        {
+            ((IJavaScriptExecutor)Driver).ExecuteAsyncScript(
+                "const element = arguments[0]; " +
+                "const done = arguments[arguments.length - 1]; " +
+                "element.scrollIntoView({ block: 'center', inline: 'nearest' }); " +
+                "let previousPosition; " +
+                "let stableFrames = 0; " +
+                "const waitForStablePosition = () => { " +
+                "const rect = element.getBoundingClientRect(); " +
+                "const position = [rect.left, rect.top, rect.width, rect.height].join(':'); " +
+                "stableFrames = position === previousPosition ? stableFrames + 1 : 0; " +
+                "previousPosition = position; " +
+                "if (stableFrames >= 3) done(); " +
+                "else requestAnimationFrame(waitForStablePosition); " +
+                "}; " +
+                "requestAnimationFrame(waitForStablePosition);",
+                element);
+        }
+
         public void NavigateToCard(By cardSelector, By elementToWait, int timeoutSeconds = 10)
         {
             // Abre la página inicial

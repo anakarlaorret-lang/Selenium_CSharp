@@ -33,35 +33,14 @@ namespace DemoTest.Pages
 
         public void SelectFebruary15th2020()
         {
-            ClickAfterLayoutStabilizes(DatePickerLocator);
+            ScrollToStableElement(WaitForElement(DatePickerLocator));
+            Driver.FindElement(DatePickerLocator).Click();
             new SelectElement(WaitForElement(By.ClassName("react-datepicker__month-select")))
                 .SelectByValue("1");
             new SelectElement(WaitForElement(By.ClassName("react-datepicker__year-select")))
                 .SelectByValue("2020");
             WaitForElement(By.CssSelector(
                 ".react-datepicker__day--015:not(.react-datepicker__day--outside-month)")).Click();
-        }
-
-        private void ClickAfterLayoutStabilizes(By locator)
-        {
-            var element = WaitForElement(locator);
-            ((IJavaScriptExecutor)Driver).ExecuteAsyncScript(
-                "const element = arguments[0]; " +
-                "const done = arguments[arguments.length - 1]; " +
-                "element.scrollIntoView({ block: 'center', inline: 'nearest' }); " +
-                "let previousPosition; " +
-                "let stableFrames = 0; " +
-                "const waitForStablePosition = () => { " +
-                "const rect = element.getBoundingClientRect(); " +
-                "const position = [rect.left, rect.top, rect.width, rect.height].join(':'); " +
-                "stableFrames = position === previousPosition ? stableFrames + 1 : 0; " +
-                "previousPosition = position; " +
-                "if (stableFrames >= 3) done(); " +
-                "else requestAnimationFrame(waitForStablePosition); " +
-                "}; " +
-                "requestAnimationFrame(waitForStablePosition);",
-                element);
-            Driver.FindElement(locator).Click();
         }
 
         public string GetSelectedDate() => WaitForElement(DatePickerLocator).GetAttribute("value")
