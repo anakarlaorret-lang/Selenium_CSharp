@@ -23,17 +23,6 @@ namespace DemoTest.Pages
             return element;
         }
 
-        protected void ScrollIntoView(IWebElement element)
-        {
-            ((IJavaScriptExecutor)Driver).ExecuteScript("arguments[0].scrollIntoView(true);", element);
-        }
-
-        protected void SafeClick(IWebElement element)
-        {
-            ScrollIntoView(element);
-            ((IJavaScriptExecutor)Driver).ExecuteScript("arguments[0].click();", element);
-        }
-
         public void NavigateToCard(By cardSelector, By elementToWait, int timeoutSeconds = 10)
         {
             // Abre la página inicial

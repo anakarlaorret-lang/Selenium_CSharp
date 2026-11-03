@@ -58,10 +58,6 @@
               "target": "Package",
               "version": "[18.11.0, )"
             },
-            "MongoDB.Driver": {
-              "target": "Package",
-              "version": "[2.19.0, )"
-            },
             "NUnit": {
               "target": "Package",
               "version": "[3.13.3, )"

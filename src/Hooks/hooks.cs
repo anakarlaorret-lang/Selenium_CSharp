@@ -3,6 +3,7 @@ using TechTalk.SpecFlow;
 using AventStack.ExtentReports;
 using AventStack.ExtentReports.Reporter;
 using DemoTest.Utils;
+using System.Diagnostics;
 
 namespace DemoTest.Hooks
 {
@@ -10,13 +11,15 @@ namespace DemoTest.Hooks
     public sealed class Hooks
     {
         private static ExtentReports? extent;
+        private static string? reportPath;
         private IWebDriver? driver;
         private ExtentTest? scenario;
 
         [BeforeTestRun]
         public static void SetupReport()
         {
-            var sparkReporter = new ExtentSparkReporter("report.html");
+            reportPath = Path.Combine(AppContext.BaseDirectory, "report.html");
+            var sparkReporter = new ExtentSparkReporter(reportPath);
             var report = new ExtentReports();
             report.AttachReporter(sparkReporter);
             extent = report;
@@ -71,6 +74,26 @@ namespace DemoTest.Hooks
         public static void TearDownReport()
         {
             extent?.Flush();
+
+            var openReport = string.Equals(
+                Environment.GetEnvironmentVariable("OPEN_EXTENT_REPORT"),
+                "true",
+                StringComparison.OrdinalIgnoreCase);
+            var isCi = string.Equals(
+                           Environment.GetEnvironmentVariable("CI"),
+                           "true",
+                           StringComparison.OrdinalIgnoreCase)
+                       || string.Equals(
+                           Environment.GetEnvironmentVariable("GITHUB_ACTIONS"),
+                           "true",
+                           StringComparison.OrdinalIgnoreCase);
+
+            if (openReport && !isCi)
+            {
+                var path = reportPath
+                    ?? throw new InvalidOperationException("The ExtentReports path has not been initialized.");
+                Process.Start(new ProcessStartInfo(path) { UseShellExecute = true });
+            }
         }
     }
 }
